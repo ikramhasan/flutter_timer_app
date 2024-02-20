@@ -23,7 +23,7 @@ class TimerListPage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 16.0),
             child: CreateTimerButton(
               onTap: () {
-                context.go(CreateTimerPage.route);
+                context.push(CreateTimerPage.route);
               },
             ),
           ),

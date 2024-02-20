@@ -44,7 +44,7 @@ class EmptyTimerListWidget extends StatelessWidget {
         const Spacer(),
         ElevatedButton(
           onPressed: () {
-            context.go(CreateTimerPage.route);
+            context.push(CreateTimerPage.route);
           },
           child: const Text('Get Started'),
         ),
