@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_app/core/constants/constants.dart';
+import 'package:flutter_timer_app/core/presentation/components/horizontal_divider_widget.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
-import 'package:flutter_timer_app/task/presentation/task_details_page.dart';
+import 'package:flutter_timer_app/task/presentation/task_page.dart';
 import 'package:flutter_timer_app/timer/presentation/timer_list/components/timer_button.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +14,7 @@ class TimerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.go(TaskDetailsPage.route);
+        context.go(TaskPage.route);
       },
       child: Container(
         width: double.infinity,
@@ -25,14 +26,7 @@ class TimerCard extends StatelessWidget {
           padding: const EdgeInsets.all(AppConstants.defaultPadding),
           child: Row(
             children: [
-              Container(
-                height: 80,
-                width: 2,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: const Color(0xFFFFC629),
-                ),
-              ),
+              const HorizontalDividerWidget(height: 80),
               Spacings.horizontalSpacing8,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

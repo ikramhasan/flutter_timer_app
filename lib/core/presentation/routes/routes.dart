@@ -1,4 +1,4 @@
-import 'package:flutter_timer_app/task/presentation/task_details_page.dart';
+import 'package:flutter_timer_app/task/presentation/task_page.dart';
 import 'package:flutter_timer_app/timer/presentation/create_timer/create_timer_page.dart';
 import 'package:flutter_timer_app/timer/presentation/timer_list/timer_list_page.dart';
 import 'package:go_router/go_router.dart';
@@ -14,8 +14,8 @@ final goRouter = GoRouter(
       builder: (context, state) => const CreateTimerPage(),
     ),
     GoRoute(
-      path: '/task-details',
-      builder: (context, state) => const TaskDetailsPage(),
+      path: '/task',
+      builder: (context, state) => const TaskPage(),
     ),
   ],
 );
