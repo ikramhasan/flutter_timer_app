@@ -18,6 +18,7 @@ dependencies:
   go_router: ^13.2.0
   google_fonts: ^6.1.0
   flutter_hooks: ^0.20.5
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:

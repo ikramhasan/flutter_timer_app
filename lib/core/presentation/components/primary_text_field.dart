@@ -26,11 +26,21 @@ class PrimaryTextField extends StatelessWidget {
           width: 2,
         ),
       ),
-      child: TextField(
+      child: TextFormField(
+        onChanged: onChanged,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter a value';
+          }
+          return null;
+        },
         maxLines: maxLines,
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.zero,
+          errorStyle: AppTextStyles.bodySmall.copyWith(
+            color: Colors.redAccent,
+          ),
           isCollapsed: true,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           labelText: 'Description',

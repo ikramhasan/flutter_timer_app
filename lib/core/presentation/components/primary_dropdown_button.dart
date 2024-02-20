@@ -20,7 +20,7 @@ class PrimaryDropdownButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
@@ -28,7 +28,7 @@ class PrimaryDropdownButton extends StatelessWidget {
             width: 2,
           ),
         ),
-        child: DropdownButton<String>(
+        child: DropdownButtonFormField<String>(
           value: value,
           isExpanded: true,
           icon: const Icon(
@@ -36,22 +36,38 @@ class PrimaryDropdownButton extends StatelessWidget {
             color: Colors.white,
             size: 32,
           ),
+          dropdownColor: Colors.black,
           borderRadius: BorderRadius.circular(8),
+
           hint: Text(
             hint,
             style: AppTextStyles.bodyLarge,
           ),
+          // style: AppTextStyles.bodyLarge,
           items: <String>[...options]
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(
                 value,
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.white),
               ),
             );
           }).toList(),
           onChanged: onChanged,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please select a value';
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+            isDense: true,
+            border: InputBorder.none,
+            errorStyle: AppTextStyles.bodySmall.copyWith(
+              color: Colors.redAccent,
+            ),
+          ),
         ),
       ),
     );

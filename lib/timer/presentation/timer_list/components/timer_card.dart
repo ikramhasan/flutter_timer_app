@@ -4,11 +4,14 @@ import 'package:flutter_timer_app/core/presentation/components/horizontal_divide
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
 import 'package:flutter_timer_app/task/presentation/task_page.dart';
+import 'package:flutter_timer_app/timer/domain/entites/timer.dart';
 import 'package:flutter_timer_app/timer/presentation/timer_list/components/timer_button.dart';
 import 'package:go_router/go_router.dart';
 
 class TimerCard extends StatelessWidget {
-  const TimerCard({super.key});
+  const TimerCard({super.key, required this.timer});
+
+  final ProjectTimer timer;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +36,16 @@ class TimerCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(
-                        Icons.star_border_outlined,
+                      Icon(
+                        timer.isFavorite
+                            ? Icons.star
+                            : Icons.star_border_outlined,
                         color: Colors.white,
                         size: 20,
                       ),
                       Spacings.horizontalSpacing4,
                       Text(
-                        'iOS app deployment',
+                        timer.project,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
@@ -55,7 +60,7 @@ class TimerCard extends StatelessWidget {
                       ),
                       Spacings.horizontalSpacing4,
                       Text(
-                        'SO056 - Booqio V2',
+                        timer.task,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
