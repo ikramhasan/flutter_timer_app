@@ -5,6 +5,7 @@ import 'package:flutter_timer_app/core/presentation/assets/svg_assets.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
 import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
+import 'package:flutter_timer_app/timer/utils/second_utils.dart';
 
 class TimerButton extends StatelessWidget {
   const TimerButton({super.key, this.onTap});
@@ -33,7 +34,7 @@ class TimerButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        state.duration.toString(),
+                        formatToMinuteSeconds(state.duration),
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       Spacings.horizontalSpacing8,

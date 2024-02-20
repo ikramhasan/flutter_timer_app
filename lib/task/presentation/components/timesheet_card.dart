@@ -9,6 +9,7 @@ import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
 import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
 import 'package:flutter_timer_app/timer/application/timer_list/timer_list_cubit.dart';
+import 'package:flutter_timer_app/timer/utils/second_utils.dart';
 
 class TimesheetCard extends StatelessWidget {
   const TimesheetCard({super.key});
@@ -42,7 +43,9 @@ class TimesheetCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  context.watch<TickerCubit>().state.duration.toString(),
+                  formatToHourMinuteSeconds(
+                    context.watch<TickerCubit>().state.duration,
+                  ),
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 BlocBuilder<TickerCubit, TickerState>(

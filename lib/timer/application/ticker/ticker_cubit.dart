@@ -19,8 +19,10 @@ class TickerCubit extends Cubit<TickerState> {
 
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker.tick().listen(
-          (duration) => emit(
-            state.copyWith(duration: duration),
+          (durationInSeconds) => emit(
+            state.copyWith(
+              duration: durationInSeconds,
+            ),
           ),
         );
   }
