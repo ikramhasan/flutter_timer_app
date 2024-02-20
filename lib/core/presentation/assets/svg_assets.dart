@@ -7,5 +7,6 @@ class SvgAssets {
   static const String pencil = 'assets/svg/pencil.svg';
   static const String pause = 'assets/svg/pause.svg';
   static const String star = 'assets/svg/star.svg';
+  static const String stop = 'assets/svg/stop.svg';
   static const String briefcase = 'assets/svg/briefcase.svg';
 }

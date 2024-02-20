@@ -6,6 +6,7 @@ class Spacings {
   static const verticalSpacing4 = SizedBox(height: 4);
   static const verticalSpacing6 = SizedBox(height: 6);
   static const verticalSpacing8 = SizedBox(height: 8);
+  static const verticalSpacing12 = SizedBox(height: 12);
   static const verticalSpacing16 = SizedBox(height: 16);
   static const verticalSpacing24 = SizedBox(height: 24);
   static const verticalSpacing28 = SizedBox(height: 28);
