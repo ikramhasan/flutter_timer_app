@@ -4,7 +4,6 @@ import 'package:flutter_timer_app/core/constants/constants.dart';
 import 'package:flutter_timer_app/core/presentation/components/horizontal_divider_widget.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
-import 'package:flutter_timer_app/core/utils/logger.dart';
 import 'package:flutter_timer_app/task/presentation/task_page.dart';
 import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
 import 'package:flutter_timer_app/timer/application/timer_list/timer_list_cubit.dart';

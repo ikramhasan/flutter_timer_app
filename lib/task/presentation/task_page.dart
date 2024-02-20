@@ -21,56 +21,61 @@ class TaskPage extends HookWidget {
     final selectedTabIndex = useState(0);
     final cubit = GoRouterState.of(context).extra as TickerCubit;
 
-    return PrimaryScaffold(
-      appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.white,
-        ),
-        title: const Text('Task Details'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(SvgAssets.pencil),
+    return PopScope(
+      onPopInvoked: (didPop) {
+        if (didPop) {}
+      },
+      child: PrimaryScaffold(
+        appBar: AppBar(
+          leading: const BackButton(
+            color: Colors.white,
           ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Spacings.verticalSpacing32,
-          Spacings.verticalSpacing32,
-          Spacings.verticalSpacing32,
-          Spacings.verticalSpacing32,
-          DefaultTabController(
-            length: 2,
-            child: TabBar(
-              onTap: (value) {
-                selectedTabIndex.value = value;
-              },
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.white,
-              dividerColor: AppColors.surfaceColor,
-              indicatorColor: Colors.white,
-              tabs: const [
-                Tab(
-                  text: 'Timesheets',
-                ),
-                Tab(
-                  text: 'Details',
-                ),
-              ],
+          title: const Text('Task Details'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(SvgAssets.pencil),
             ),
-          ),
-          selectedTabIndex.value == 0
-              ? BlocProvider<TickerCubit>(
-                  create: (context) => cubit,
-                  child: TimesheetPage(),
-                )
-              : const Padding(
-                  padding: EdgeInsets.all(16),
-                  child: TaskDetailsPage(),
-                ),
-        ],
+          ],
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Spacings.verticalSpacing32,
+            Spacings.verticalSpacing32,
+            Spacings.verticalSpacing32,
+            Spacings.verticalSpacing32,
+            DefaultTabController(
+              length: 2,
+              child: TabBar(
+                onTap: (value) {
+                  selectedTabIndex.value = value;
+                },
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.white,
+                dividerColor: AppColors.surfaceColor,
+                indicatorColor: Colors.white,
+                tabs: const [
+                  Tab(
+                    text: 'Timesheets',
+                  ),
+                  Tab(
+                    text: 'Details',
+                  ),
+                ],
+              ),
+            ),
+            selectedTabIndex.value == 0
+                ? BlocProvider<TickerCubit>(
+                    create: (context) => cubit,
+                    child: const TimesheetPage(),
+                  )
+                : const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: TaskDetailsPage(),
+                  ),
+          ],
+        ),
       ),
     );
   }

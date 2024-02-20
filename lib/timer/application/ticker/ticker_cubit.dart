@@ -48,9 +48,13 @@ class TickerCubit extends Cubit<TickerState> {
   }
 
   void stop() {
-    emit(state.copyWith(isRunning: false, stopped: true, duration: 0));
+    emit(state.copyWith(isRunning: false, duration: 0));
     _tickerSubscription?.pause();
     _tickerSubscription = null;
     _ticker = TickerRepositoryImpl();
   }
+
+  @override
+  // ignore: must_call_super
+  Future<void> close() async {}
 }
