@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_timer_app/core/presentation/assets/svg_assets.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
+import 'package:flutter_timer_app/timer/presentation/create_timer/create_timer_page.dart';
+import 'package:go_router/go_router.dart';
 
 class EmptyTimerListWidget extends StatelessWidget {
   const EmptyTimerListWidget({super.key});
@@ -41,7 +43,9 @@ class EmptyTimerListWidget extends StatelessWidget {
         ),
         const Spacer(),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            context.go(CreateTimerPage.route);
+          },
           child: const Text('Get Started'),
         ),
         Spacings.verticalSpacing32,

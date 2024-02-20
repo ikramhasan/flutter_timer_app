@@ -26,6 +26,29 @@ class AppThemes {
             minimumSize: const Size(double.infinity, 48),
           ),
         ),
+        // dropdownMenuTheme: DropdownMenuThemeData(
+        //   menuStyle: MenuStyle(
+        //     shape: MaterialStateProperty.resolveWith(
+        //       (states) => RoundedRectangleBorder(
+        //         side: const BorderSide(
+        //           color: Colors.white,
+        //           width: 1,
+        //         ),
+        //         borderRadius: BorderRadius.circular(8),
+        //       ),
+        //     ),
+        //     minimumSize: MaterialStateProperty.all(
+        //       const Size(double.infinity, 56),
+        //     ),
+        //   ),
+        //   inputDecorationTheme: InputDecorationTheme(
+        //     focusColor: Colors.white,
+        //     border: OutlineInputBorder(
+        //       borderRadius: BorderRadius.circular(8),
+        //     ),
+        //   ),
+        //   textStyle: AppTextStyles.bodyLarge,
+        // ),
         textTheme: TextTheme(
           displayLarge: AppTextStyles.displayLarge,
           displayMedium: AppTextStyles.displayMedium,
