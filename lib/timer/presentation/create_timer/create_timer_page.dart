@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_timer_app/core/constants/constants.dart';
 import 'package:flutter_timer_app/core/presentation/components/primary_dropdown_button.dart';
 import 'package:flutter_timer_app/core/presentation/components/primary_scaffold.dart';
 import 'package:flutter_timer_app/core/presentation/components/primary_text_field.dart';
-import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
 import 'package:flutter_timer_app/core/presentation/styles/text_styles.dart';
 
