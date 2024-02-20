@@ -26,4 +26,8 @@ class TimerListCubit extends Cubit<TimerListState> {
     );
     emit(state.copyWith(timers: timers));
   }
+
+  void selectTimer(ProjectTimer timer) {
+    emit(state.copyWith(selectedTimer: timer));
+  }
 }

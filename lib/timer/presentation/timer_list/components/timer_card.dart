@@ -17,7 +17,7 @@ class TimerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(TaskPage.route);
+        context.push(TaskPage.route, extra: timer);
       },
       child: Container(
         width: double.infinity,

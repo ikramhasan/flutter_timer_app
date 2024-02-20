@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_timer_app/core/presentation/components/horizontal_divider_widget.dart';
 import 'package:flutter_timer_app/core/presentation/components/primary_container.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
+import 'package:flutter_timer_app/timer/application/timer_list/timer_list_cubit.dart';
 
 class TaskDetailsCard extends StatelessWidget {
   const TaskDetailsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final selectedTimer = context.read<TimerListCubit>().state.selectedTimer;
+
     return Column(
       children: [
         PrimaryContainer(
@@ -24,7 +28,7 @@ class TaskDetailsCard extends StatelessWidget {
                   const HorizontalDividerWidget(height: 24),
                   Spacings.horizontalSpacing8,
                   Text(
-                    'Apexive: Content Planning',
+                    selectedTimer.project,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
@@ -63,7 +67,7 @@ class TaskDetailsCard extends StatelessWidget {
               ),
               Spacings.verticalSpacing4,
               Text(
-                'As a user, I would like to be able to buy a subscription, this would allow me to get a discount on the products and on the second stage of diagnosis',
+                selectedTimer.description,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ],

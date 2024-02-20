@@ -47,8 +47,16 @@ class TimerListPage extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: state.timers.length,
                     itemBuilder: (context, index) {
-                      return TimerCard(
-                        timer: state.timers[index],
+                      context
+                          .read<TimerListCubit>()
+                          .selectTimer(state.timers[index]);
+                          
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: TimerCard(
+                          key: ValueKey(state.timers[index].id),
+                          timer: state.timers[index],
+                        ),
                       );
                     },
                   ),

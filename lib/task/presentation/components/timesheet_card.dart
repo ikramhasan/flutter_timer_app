@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_timer_app/core/presentation/assets/svg_assets.dart';
 import 'package:flutter_timer_app/core/presentation/components/primary_container.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
+import 'package:flutter_timer_app/timer/application/timer_list/timer_list_cubit.dart';
 
 class TimesheetCard extends StatelessWidget {
   const TimesheetCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final selectedTimer = context.read<TimerListCubit>().state.selectedTimer;
+
     return Padding(
       padding: const EdgeInsets.all(16),
       child: PrimaryContainer(
@@ -79,7 +83,7 @@ class TimesheetCard extends StatelessWidget {
             ),
             Spacings.verticalSpacing12,
             Text(
-              'This is a description of the task that is being tracked. It can be a long description that will be displayed in multiple lines.',
+              selectedTimer.description,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],

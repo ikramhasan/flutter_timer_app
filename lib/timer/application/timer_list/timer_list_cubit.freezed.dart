@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TimerListState {
   List<ProjectTimer> get timers => throw _privateConstructorUsedError;
+  ProjectTimer get selectedTimer => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TimerListStateCopyWith<TimerListState> get copyWith =>
@@ -29,7 +30,9 @@ abstract class $TimerListStateCopyWith<$Res> {
           TimerListState value, $Res Function(TimerListState) then) =
       _$TimerListStateCopyWithImpl<$Res, TimerListState>;
   @useResult
-  $Res call({List<ProjectTimer> timers});
+  $Res call({List<ProjectTimer> timers, ProjectTimer selectedTimer});
+
+  $ProjectTimerCopyWith<$Res> get selectedTimer;
 }
 
 /// @nodoc
@@ -46,13 +49,26 @@ class _$TimerListStateCopyWithImpl<$Res, $Val extends TimerListState>
   @override
   $Res call({
     Object? timers = null,
+    Object? selectedTimer = null,
   }) {
     return _then(_value.copyWith(
       timers: null == timers
           ? _value.timers
           : timers // ignore: cast_nullable_to_non_nullable
               as List<ProjectTimer>,
+      selectedTimer: null == selectedTimer
+          ? _value.selectedTimer
+          : selectedTimer // ignore: cast_nullable_to_non_nullable
+              as ProjectTimer,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectTimerCopyWith<$Res> get selectedTimer {
+    return $ProjectTimerCopyWith<$Res>(_value.selectedTimer, (value) {
+      return _then(_value.copyWith(selectedTimer: value) as $Val);
+    });
   }
 }
 
@@ -64,7 +80,10 @@ abstract class _$$TimerListStateImplCopyWith<$Res>
       __$$TimerListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProjectTimer> timers});
+  $Res call({List<ProjectTimer> timers, ProjectTimer selectedTimer});
+
+  @override
+  $ProjectTimerCopyWith<$Res> get selectedTimer;
 }
 
 /// @nodoc
@@ -79,12 +98,17 @@ class __$$TimerListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? timers = null,
+    Object? selectedTimer = null,
   }) {
     return _then(_$TimerListStateImpl(
       timers: null == timers
           ? _value._timers
           : timers // ignore: cast_nullable_to_non_nullable
               as List<ProjectTimer>,
+      selectedTimer: null == selectedTimer
+          ? _value.selectedTimer
+          : selectedTimer // ignore: cast_nullable_to_non_nullable
+              as ProjectTimer,
     ));
   }
 }
@@ -92,7 +116,8 @@ class __$$TimerListStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TimerListStateImpl implements _TimerListState {
-  const _$TimerListStateImpl({required final List<ProjectTimer> timers})
+  const _$TimerListStateImpl(
+      {required final List<ProjectTimer> timers, required this.selectedTimer})
       : _timers = timers;
 
   final List<ProjectTimer> _timers;
@@ -104,8 +129,11 @@ class _$TimerListStateImpl implements _TimerListState {
   }
 
   @override
+  final ProjectTimer selectedTimer;
+
+  @override
   String toString() {
-    return 'TimerListState(timers: $timers)';
+    return 'TimerListState(timers: $timers, selectedTimer: $selectedTimer)';
   }
 
   @override
@@ -113,12 +141,14 @@ class _$TimerListStateImpl implements _TimerListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TimerListStateImpl &&
-            const DeepCollectionEquality().equals(other._timers, _timers));
+            const DeepCollectionEquality().equals(other._timers, _timers) &&
+            (identical(other.selectedTimer, selectedTimer) ||
+                other.selectedTimer == selectedTimer));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_timers));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_timers), selectedTimer);
 
   @JsonKey(ignore: true)
   @override
@@ -129,11 +159,14 @@ class _$TimerListStateImpl implements _TimerListState {
 }
 
 abstract class _TimerListState implements TimerListState {
-  const factory _TimerListState({required final List<ProjectTimer> timers}) =
-      _$TimerListStateImpl;
+  const factory _TimerListState(
+      {required final List<ProjectTimer> timers,
+      required final ProjectTimer selectedTimer}) = _$TimerListStateImpl;
 
   @override
   List<ProjectTimer> get timers;
+  @override
+  ProjectTimer get selectedTimer;
   @override
   @JsonKey(ignore: true)
   _$$TimerListStateImplCopyWith<_$TimerListStateImpl> get copyWith =>
