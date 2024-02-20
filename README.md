@@ -1,16 +1,40 @@
-# flutter_timer_app
+3 Flutter timer app
 
-A new Flutter project.
+List of Timers Screen:
 
-## Getting Started
+    - [x] Display a list of timers.
+    - [ ] Each list item should show relevant details provided in the design.
+    - [ ] Pressing the play/pause button should run or pause the timer
+    - [ ] Skip implementing different tabs (favorite, odoo etc)
+    - [ ] Skip implementing the bottom navigation bar (recents, projects etc)
+    - [ ] Plus button in the AppBar should take user to create timer screen
 
-This project is a starting point for a Flutter application.
+Create Timer Screen:
 
-A few resources to get you started if this is your first Flutter project:
+    - [ ] Implement a form to create a new timer.
+    - [ ] Include dropdowns for selecting projects and tasks.
+    - [ ] Add a text input for the timer description.
+    - [ ] Include a checkbox for marking the timer as a favorite.
+    - [ ] Upon adding a timer user should return to the list of timers screen.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Task Details Screen:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    - [ ] Display details of a selected task in the details tab(you can use random or static deadline and assigned to values)
+    - [ ] Show the running timer-related details and description in the timesheets tab. Pressing play/pause should run or pause the timer. Pressing stop will mark it as completed.
+    - [ ] Updating the timer state should reflect on the list of timer screen and vice-versa.
+    - [ ] Show normal completed timers (Optional)
+    - [ ] Show expandable completed timers (Optional)
+
+In-Memory Data Management:
+
+    - [ ] Use a pre-defined in-memory list for projects and tasks data. Each Timer can contain information about Task, and Project as well. Feel free to structure the data as you wish from the desgin.
+    - [ ] All data (timers, projects, tasks) should be managed in-memory. Use hydrated_bloc package if needed to persist some data. No need for persistence otherwise.
+
+Theme and Styling:
+
+    - [ ] Implement theme styles (TextStyle, Color, etc.) according to the provided design system in Figma.
+    - [ ] Ensure the UI matches the Figma designs.
+
+State Management:
+
+    - [ ] Use the BLoC pattern for state management across the application.

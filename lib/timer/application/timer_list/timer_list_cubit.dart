@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer_app/timer/domain/entites/timer.dart';
+import 'package:flutter_timer_app/timer/domain/entities/timer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'timer_list_state.dart';

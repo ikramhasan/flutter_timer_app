@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_timer_app/core/presentation/assets/svg_assets.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
 import 'package:flutter_timer_app/task/presentation/task_details_page.dart';
 import 'package:flutter_timer_app/task/presentation/timesheet_page.dart';
+import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
+import 'package:go_router/go_router.dart';
 
 class TaskPage extends HookWidget {
   const TaskPage({super.key});
@@ -16,7 +19,7 @@ class TaskPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final selectedTabIndex = useState(0);
-
+    final cubit = GoRouterState.of(context).extra as TickerCubit;
 
     return PrimaryScaffold(
       appBar: AppBar(
@@ -59,7 +62,10 @@ class TaskPage extends HookWidget {
             ),
           ),
           selectedTabIndex.value == 0
-              ? const TimesheetPage()
+              ? BlocProvider<TickerCubit>(
+                  create: (context) => cubit,
+                  child: const TimesheetPage(),
+                )
               : const Padding(
                   padding: EdgeInsets.all(16),
                   child: TaskDetailsPage(),

@@ -7,11 +7,13 @@ class PrimaryTextField extends StatelessWidget {
   const PrimaryTextField({
     super.key,
     required this.label,
+    this.value,
     this.maxLines,
     this.onChanged,
   });
 
   final String label;
+  final String? value;
   final int? maxLines;
   final void Function(String value)? onChanged;
 
@@ -34,6 +36,7 @@ class PrimaryTextField extends StatelessWidget {
           }
           return null;
         },
+        initialValue: value,
         maxLines: maxLines,
         decoration: InputDecoration(
           isDense: true,

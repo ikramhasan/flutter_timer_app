@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_timer_app/core/constants/constants.dart';
 import 'package:flutter_timer_app/core/presentation/components/primary_scaffold.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
+import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
 import 'package:flutter_timer_app/timer/application/timer_list/timer_list_cubit.dart';
 import 'package:flutter_timer_app/timer/presentation/create_timer/components/create_timer_button.dart';
 import 'package:flutter_timer_app/timer/presentation/create_timer/create_timer_page.dart';
@@ -38,29 +39,29 @@ class TimerListPage extends StatelessWidget {
             if (state.timers.isEmpty) {
               return const EmptyTimerListWidget();
             } else {
-              return Column(
-                children: [
-                  Spacings.verticalSpacing64,
-                  Spacings.verticalSpacing64,
-                  ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    itemCount: state.timers.length,
-                    itemBuilder: (context, index) {
-                      context
-                          .read<TimerListCubit>()
-                          .selectTimer(state.timers[index]);
-                          
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: TimerCard(
-                          key: ValueKey(state.timers[index].id),
-                          timer: state.timers[index],
-                        ),
-                      );
-                    },
+              return CustomScrollView(
+                slivers: [
+                  const SliverToBoxAdapter(child: Spacings.verticalSpacing64),
+                  const SliverToBoxAdapter(child: Spacings.verticalSpacing64),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: BlocProvider<TickerCubit>(
+                            key: ValueKey(state.timers[index].id),
+                            create: (context) => TickerCubit(),
+                            child: TimerCard(
+                              key: ValueKey(state.timers[index].id),
+                              timer: state.timers[index],
+                            ),
+                          ),
+                        );
+                      },
+                      childCount: state.timers.length,
+                    ),
                   ),
-                  Spacings.verticalSpacing16,
+                  const SliverToBoxAdapter(child: Spacings.verticalSpacing16),
                 ],
               );
             }

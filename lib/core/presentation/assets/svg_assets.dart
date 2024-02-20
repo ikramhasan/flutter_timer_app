@@ -5,6 +5,7 @@ class SvgAssets {
   static const String checked = 'assets/svg/checked.svg';
   static const String clockOutlined = 'assets/svg/clock_outlined.svg';
   static const String pencil = 'assets/svg/pencil.svg';
+  static const String play = 'assets/svg/play.svg';
   static const String pause = 'assets/svg/pause.svg';
   static const String star = 'assets/svg/star.svg';
   static const String stop = 'assets/svg/stop.svg';

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_timer_app/core/constants/constants.dart';
 import 'package:flutter_timer_app/core/presentation/components/horizontal_divider_widget.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
 import 'package:flutter_timer_app/task/presentation/task_page.dart';
-import 'package:flutter_timer_app/timer/domain/entites/timer.dart';
+import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
+import 'package:flutter_timer_app/timer/application/timer_list/timer_list_cubit.dart';
+import 'package:flutter_timer_app/timer/domain/entities/timer.dart';
 import 'package:flutter_timer_app/timer/presentation/timer_list/components/timer_button.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,7 +20,8 @@ class TimerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(TaskPage.route, extra: timer);
+        context.read<TimerListCubit>().selectTimer(timer);
+        context.push(TaskPage.route, extra: context.read<TickerCubit>());
       },
       child: Container(
         width: double.infinity,
@@ -83,7 +87,19 @@ class TimerCard extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              const TimerButton(),
+              TimerButton(
+                onTap: () {
+                  final state = context.read<TickerCubit>().state;
+
+                  if (state.isRunning) {
+                    context.read<TickerCubit>().pause();
+                  } else if (state.duration == 0) {
+                    context.read<TickerCubit>().start();
+                  } else {
+                    context.read<TickerCubit>().resume();
+                  }
+                },
+              ),
             ],
           ),
         ),

@@ -1,10 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_timer_app/core/presentation/assets/svg_assets.dart';
 import 'package:flutter_timer_app/core/presentation/components/primary_container.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
+import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
 import 'package:flutter_timer_app/timer/application/timer_list/timer_list_cubit.dart';
 
 class TimesheetCard extends StatelessWidget {
@@ -39,29 +42,54 @@ class TimesheetCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '08:08:20',
+                  context.watch<TickerCubit>().state.duration.toString(),
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: AppColors.secondaryContainer,
-                      ),
-                      child: SvgPicture.asset(SvgAssets.stop),
-                    ),
-                    Spacings.horizontalSpacing16,
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.white,
-                      ),
-                      child: SvgPicture.asset(SvgAssets.pause),
-                    ),
-                  ],
+                BlocBuilder<TickerCubit, TickerState>(
+                  builder: (context, state) {
+                    return Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            final state = context.read<TickerCubit>().state;
+
+                            if (state.isRunning) {
+                              context.read<TickerCubit>().pause();
+                            } else if (state.duration == 0) {
+                              context.read<TickerCubit>().start();
+                            } else {
+                              context.read<TickerCubit>().resume();
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: AppColors.secondaryContainer,
+                            ),
+                            child: SvgPicture.asset(SvgAssets.stop),
+                          ),
+                        ),
+                        Spacings.horizontalSpacing16,
+                        GestureDetector(
+                          onTap: () => context.read<TickerCubit>().stop(),
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.white,
+                            ),
+                            child: SvgPicture.asset(
+                              state.isRunning
+                                  ? SvgAssets.pause
+                                  : SvgAssets.play,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ],
             ),

@@ -65,6 +65,7 @@ class CreateTimerPage extends StatelessWidget {
                   Spacings.verticalSpacing28,
                   PrimaryTextField(
                     label: 'Description',
+                    value: state.description,
                     maxLines: 3,
                     onChanged: (value) {
                       context.read<TimerFormCubit>().descriptionChanged(value);
