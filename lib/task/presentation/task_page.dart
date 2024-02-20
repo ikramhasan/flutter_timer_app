@@ -64,7 +64,7 @@ class TaskPage extends HookWidget {
           selectedTabIndex.value == 0
               ? BlocProvider<TickerCubit>(
                   create: (context) => cubit,
-                  child: const TimesheetPage(),
+                  child: TimesheetPage(),
                 )
               : const Padding(
                   padding: EdgeInsets.all(16),

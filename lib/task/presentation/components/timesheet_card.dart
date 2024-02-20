@@ -51,15 +51,7 @@ class TimesheetCard extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            final state = context.read<TickerCubit>().state;
-
-                            if (state.isRunning) {
-                              context.read<TickerCubit>().pause();
-                            } else if (state.duration == 0) {
-                              context.read<TickerCubit>().start();
-                            } else {
-                              context.read<TickerCubit>().resume();
-                            }
+                            context.read<TickerCubit>().stop();
                           },
                           child: Container(
                             padding: const EdgeInsets.all(12),
@@ -72,7 +64,8 @@ class TimesheetCard extends StatelessWidget {
                         ),
                         Spacings.horizontalSpacing16,
                         GestureDetector(
-                          onTap: () => context.read<TickerCubit>().stop(),
+                          onTap: () =>
+                              context.read<TickerCubit>().startOrPause(),
                           child: Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(

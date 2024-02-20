@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TickerState {
   int get duration => throw _privateConstructorUsedError;
   bool get isRunning => throw _privateConstructorUsedError;
+  bool get stopped => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TickerStateCopyWith<TickerState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $TickerStateCopyWith<$Res> {
           TickerState value, $Res Function(TickerState) then) =
       _$TickerStateCopyWithImpl<$Res, TickerState>;
   @useResult
-  $Res call({int duration, bool isRunning});
+  $Res call({int duration, bool isRunning, bool stopped});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$TickerStateCopyWithImpl<$Res, $Val extends TickerState>
   $Res call({
     Object? duration = null,
     Object? isRunning = null,
+    Object? stopped = null,
   }) {
     return _then(_value.copyWith(
       duration: null == duration
@@ -57,6 +59,10 @@ class _$TickerStateCopyWithImpl<$Res, $Val extends TickerState>
       isRunning: null == isRunning
           ? _value.isRunning
           : isRunning // ignore: cast_nullable_to_non_nullable
+              as bool,
+      stopped: null == stopped
+          ? _value.stopped
+          : stopped // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -70,7 +76,7 @@ abstract class _$$TickerStateImplCopyWith<$Res>
       __$$TickerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int duration, bool isRunning});
+  $Res call({int duration, bool isRunning, bool stopped});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$TickerStateImplCopyWithImpl<$Res>
   $Res call({
     Object? duration = null,
     Object? isRunning = null,
+    Object? stopped = null,
   }) {
     return _then(_$TickerStateImpl(
       duration: null == duration
@@ -96,6 +103,10 @@ class __$$TickerStateImplCopyWithImpl<$Res>
           ? _value.isRunning
           : isRunning // ignore: cast_nullable_to_non_nullable
               as bool,
+      stopped: null == stopped
+          ? _value.stopped
+          : stopped // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -103,16 +114,19 @@ class __$$TickerStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TickerStateImpl implements _TickerState {
-  const _$TickerStateImpl({required this.duration, required this.isRunning});
+  const _$TickerStateImpl(
+      {required this.duration, required this.isRunning, required this.stopped});
 
   @override
   final int duration;
   @override
   final bool isRunning;
+  @override
+  final bool stopped;
 
   @override
   String toString() {
-    return 'TickerState(duration: $duration, isRunning: $isRunning)';
+    return 'TickerState(duration: $duration, isRunning: $isRunning, stopped: $stopped)';
   }
 
   @override
@@ -123,11 +137,12 @@ class _$TickerStateImpl implements _TickerState {
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.isRunning, isRunning) ||
-                other.isRunning == isRunning));
+                other.isRunning == isRunning) &&
+            (identical(other.stopped, stopped) || other.stopped == stopped));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, duration, isRunning);
+  int get hashCode => Object.hash(runtimeType, duration, isRunning, stopped);
 
   @JsonKey(ignore: true)
   @override
@@ -139,12 +154,15 @@ class _$TickerStateImpl implements _TickerState {
 abstract class _TickerState implements TickerState {
   const factory _TickerState(
       {required final int duration,
-      required final bool isRunning}) = _$TickerStateImpl;
+      required final bool isRunning,
+      required final bool stopped}) = _$TickerStateImpl;
 
   @override
   int get duration;
   @override
   bool get isRunning;
+  @override
+  bool get stopped;
   @override
   @JsonKey(ignore: true)
   _$$TickerStateImplCopyWith<_$TickerStateImpl> get copyWith =>
