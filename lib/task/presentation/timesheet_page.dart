@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_app/task/presentation/components/competed_task.dart';
 import 'package:flutter_timer_app/task/presentation/components/timesheet_card.dart';
-import 'package:flutter_timer_app/timer/application/ticker/ticker_cubit.dart';
 
 class TimesheetPage extends StatelessWidget {
   const TimesheetPage({super.key});
@@ -12,7 +11,7 @@ class TimesheetPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TimesheetCard(),
+        const TimesheetCard(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
