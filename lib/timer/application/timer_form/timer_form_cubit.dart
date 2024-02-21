@@ -24,7 +24,12 @@ class TimerFormCubit extends Cubit<TimerFormState> {
   }
 
   void createTimerButtonPressed() {
-    emit(TimerFormState.initial());
+    if (state.project != null &&
+        state.task != null &&
+        state.description != null) {
+      emit(TimerFormState.initial());
+    }
+
     emit(state.copyWith(showErrorMessages: true));
   }
 }
