@@ -18,101 +18,109 @@ class TimesheetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedTimer = context.read<TimerListCubit>().state.selectedTimer;
 
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: PrimaryContainer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Monday',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            Spacings.verticalSpacing4,
-            Text(
-              '17.07.2023',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Spacings.verticalSpacing4,
-            Text(
-              'Start Time 10:00',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            Spacings.verticalSpacing8,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  formatToHourMinuteSeconds(
-                    context.watch<TickerCubit>().state.duration,
+    return selectedTimer.isComplete
+        ? const SizedBox.shrink()
+        : Padding(
+            padding: const EdgeInsets.all(16),
+            child: PrimaryContainer(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Monday',
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                BlocBuilder<TickerCubit, TickerState>(
-                  builder: (context, state) {
-                    return Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            context.read<TickerCubit>().stop();
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: AppColors.secondaryContainer,
-                            ),
-                            child: SvgPicture.asset(SvgAssets.stop),
-                          ),
+                  Spacings.verticalSpacing4,
+                  Text(
+                    '17.07.2023',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Spacings.verticalSpacing4,
+                  Text(
+                    'Start Time 10:00',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  Spacings.verticalSpacing8,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        formatToHourMinuteSeconds(
+                          context.watch<TickerCubit>().state.duration,
                         ),
-                        Spacings.horizontalSpacing16,
-                        GestureDetector(
-                          onTap: () =>
-                              context.read<TickerCubit>().startOrPause(),
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: Colors.white,
-                            ),
-                            child: SvgPicture.asset(
-                              state.isRunning
-                                  ? SvgAssets.pause
-                                  : SvgAssets.play,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ],
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                      BlocBuilder<TickerCubit, TickerState>(
+                        builder: (context, state) {
+                          return Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  context.read<TickerCubit>().stop();
+                                  context
+                                      .read<TimerListCubit>()
+                                      .markTimerAsComplete(
+                                        selectedTimer,
+                                        state.duration,
+                                      );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: AppColors.secondaryContainer,
+                                  ),
+                                  child: SvgPicture.asset(SvgAssets.stop),
+                                ),
+                              ),
+                              Spacings.horizontalSpacing16,
+                              GestureDetector(
+                                onTap: () =>
+                                    context.read<TickerCubit>().startOrPause(),
+                                child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: Colors.white,
+                                  ),
+                                  child: SvgPicture.asset(
+                                    state.isRunning
+                                        ? SvgAssets.pause
+                                        : SvgAssets.play,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  Spacings.verticalSpacing16,
+                  Divider(
+                    thickness: 1,
+                    color: AppColors.secondaryContainer,
+                  ),
+                  Spacings.verticalSpacing16,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Description',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      SvgPicture.asset(SvgAssets.pencil),
+                    ],
+                  ),
+                  Spacings.verticalSpacing12,
+                  Text(
+                    selectedTimer.description,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ],
+              ),
             ),
-            Spacings.verticalSpacing16,
-            Divider(
-              thickness: 1,
-              color: AppColors.secondaryContainer,
-            ),
-            Spacings.verticalSpacing16,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Description',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                SvgPicture.asset(SvgAssets.pencil),
-              ],
-            ),
-            Spacings.verticalSpacing12,
-            Text(
-              selectedTimer.description,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }

@@ -20,7 +20,9 @@ mixin _$ProjectTimer {
   String get project => throw _privateConstructorUsedError;
   String get task => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
+  bool get isComplete => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProjectTimerCopyWith<ProjectTimer> get copyWith =>
@@ -38,7 +40,9 @@ abstract class $ProjectTimerCopyWith<$Res> {
       String project,
       String task,
       String description,
-      bool isFavorite});
+      int duration,
+      bool isFavorite,
+      bool isComplete});
 }
 
 /// @nodoc
@@ -58,7 +62,9 @@ class _$ProjectTimerCopyWithImpl<$Res, $Val extends ProjectTimer>
     Object? project = null,
     Object? task = null,
     Object? description = null,
+    Object? duration = null,
     Object? isFavorite = null,
+    Object? isComplete = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -77,9 +83,17 @@ class _$ProjectTimerCopyWithImpl<$Res, $Val extends ProjectTimer>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
       isFavorite: null == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isComplete: null == isComplete
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -98,7 +112,9 @@ abstract class _$$ProjectTimerImplCopyWith<$Res>
       String project,
       String task,
       String description,
-      bool isFavorite});
+      int duration,
+      bool isFavorite,
+      bool isComplete});
 }
 
 /// @nodoc
@@ -116,7 +132,9 @@ class __$$ProjectTimerImplCopyWithImpl<$Res>
     Object? project = null,
     Object? task = null,
     Object? description = null,
+    Object? duration = null,
     Object? isFavorite = null,
+    Object? isComplete = null,
   }) {
     return _then(_$ProjectTimerImpl(
       id: null == id
@@ -135,9 +153,17 @@ class __$$ProjectTimerImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
       isFavorite: null == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isComplete: null == isComplete
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -151,7 +177,9 @@ class _$ProjectTimerImpl implements _ProjectTimer {
       required this.project,
       required this.task,
       required this.description,
-      required this.isFavorite});
+      required this.duration,
+      required this.isFavorite,
+      required this.isComplete});
 
   @override
   final String id;
@@ -162,11 +190,15 @@ class _$ProjectTimerImpl implements _ProjectTimer {
   @override
   final String description;
   @override
+  final int duration;
+  @override
   final bool isFavorite;
+  @override
+  final bool isComplete;
 
   @override
   String toString() {
-    return 'ProjectTimer(id: $id, project: $project, task: $task, description: $description, isFavorite: $isFavorite)';
+    return 'ProjectTimer(id: $id, project: $project, task: $task, description: $description, duration: $duration, isFavorite: $isFavorite, isComplete: $isComplete)';
   }
 
   @override
@@ -179,13 +211,17 @@ class _$ProjectTimerImpl implements _ProjectTimer {
             (identical(other.task, task) || other.task == task) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
             (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite));
+                other.isFavorite == isFavorite) &&
+            (identical(other.isComplete, isComplete) ||
+                other.isComplete == isComplete));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, project, task, description, isFavorite);
+  int get hashCode => Object.hash(runtimeType, id, project, task, description,
+      duration, isFavorite, isComplete);
 
   @JsonKey(ignore: true)
   @override
@@ -200,7 +236,9 @@ abstract class _ProjectTimer implements ProjectTimer {
       required final String project,
       required final String task,
       required final String description,
-      required final bool isFavorite}) = _$ProjectTimerImpl;
+      required final int duration,
+      required final bool isFavorite,
+      required final bool isComplete}) = _$ProjectTimerImpl;
 
   @override
   String get id;
@@ -211,7 +249,11 @@ abstract class _ProjectTimer implements ProjectTimer {
   @override
   String get description;
   @override
+  int get duration;
+  @override
   bool get isFavorite;
+  @override
+  bool get isComplete;
   @override
   @JsonKey(ignore: true)
   _$$ProjectTimerImplCopyWith<_$ProjectTimerImpl> get copyWith =>

@@ -19,9 +19,11 @@ class TimerListCubit extends Cubit<TimerListState> {
       ProjectTimer(
         id: DateTime.now().toIso8601String(),
         project: project,
+        duration: 0,
         task: task,
         description: description,
         isFavorite: isFavorite,
+        isComplete: false,
       ),
     );
     emit(state.copyWith(timers: timers));
@@ -29,5 +31,20 @@ class TimerListCubit extends Cubit<TimerListState> {
 
   void selectTimer(ProjectTimer timer) {
     emit(state.copyWith(selectedTimer: timer));
+  }
+
+  void markTimerAsComplete(ProjectTimer timer, int duration) {
+    final timers = state.timers.map((t) {
+      if (t.id == timer.id) {
+        return t.copyWith(isComplete: true, duration: duration);
+      }
+      return t;
+    }).toList();
+    emit(
+      state.copyWith(
+        timers: timers,
+        selectedTimer: timer.copyWith(isComplete: true, duration: duration),
+      ),
+    );
   }
 }

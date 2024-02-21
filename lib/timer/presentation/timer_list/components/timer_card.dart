@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_timer_app/core/constants/constants.dart';
+import 'package:flutter_timer_app/core/presentation/assets/svg_assets.dart';
 import 'package:flutter_timer_app/core/presentation/components/horizontal_divider_widget.dart';
 import 'package:flutter_timer_app/core/presentation/styles/colors.dart';
 import 'package:flutter_timer_app/core/presentation/styles/spacings.dart';
@@ -39,6 +42,7 @@ class TimerCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(
                         timer.isFavorite
@@ -48,19 +52,23 @@ class TimerCard extends StatelessWidget {
                         size: 20,
                       ),
                       Spacings.horizontalSpacing4,
-                      Text(
-                        timer.project,
-                        style: Theme.of(context).textTheme.titleMedium,
+                      SizedBox(
+                        width: 200,
+                        child: Text(
+                          timer.project,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
                       ),
                     ],
                   ),
                   Spacings.verticalSpacing6,
                   Row(
                     children: [
-                      const Icon(
-                        Icons.work_outline,
+                      SvgPicture.asset(
+                        SvgAssets.briefcase,
                         color: Colors.white,
-                        size: 18,
+                        height: 16,
+                        width: 16,
                       ),
                       Spacings.horizontalSpacing4,
                       Text(
@@ -72,12 +80,13 @@ class TimerCard extends StatelessWidget {
                   Spacings.verticalSpacing6,
                   Row(
                     children: [
-                      const Icon(
-                        Icons.schedule,
+                      SvgPicture.asset(
+                        SvgAssets.clockOutlined,
                         color: Colors.white,
-                        size: 18,
+                        height: 16,
+                        width: 16,
                       ),
-                      Spacings.horizontalSpacing4,
+                      Spacings.horizontalSpacing8,
                       Text(
                         'Deadline 07/20/2023',
                         style: Theme.of(context).textTheme.bodyMedium,
